@@ -1,0 +1,69 @@
+<div class='container'>
+  <h1>
+  Hi! my name is {{name}}
+</h1>
+<div>
+  I am {{age}} years old.  <br>
+  Mail me at {{email}}  <br>
+  I live at {{address.street}}, {{address.city}}, {{address.state}}.
+</div>
+
+<h1>Edit User</h1>
+<form>
+  <div>
+    <label for='name'>Name</label><br>
+    <input type="text" [(ngModel)]='name' name='name'>
+  </div>
+<div>
+    <label for='age'>Age</label><br>
+    <input type="number" [(ngModel)]='age' name='age'>
+</div>
+<div>
+    <label for='email'>Email</label><br>
+    <input type="text" [(ngModel)]='email' name='email'>
+</div>
+<div>
+    <label for='street'>Street</label><br>
+    <input type="text" [(ngModel)]='address.street' name='street'>
+  </div>
+  <div>
+    <label for='city'>City</label><br>
+    <input type="text" [(ngModel)]='address.city' name='city'>
+  </div>
+  <div>
+    <label for='state'>State</label><br>
+    <input type="text" [(ngModel)]='address.state' name='state'>
+  </div>
+</form>
+<ul>
+    My hobbies are:
+    <li *ngFor='let hobby of hobbies; let i = index'>
+      {{i}}: {{hobby}} <button (click)='deleteHobby(hobby)'>x</button>
+    </li>
+</ul>
+<form class="" (submit)='addHobby(hobby.value)'>
+  <div>
+    <label for='hobby'>Hobby</label>
+    <input type="text" #hobby>
+  </div>
+  <button (click)='addHobby(hobby.value)'>Add</button>
+</form>
+<button (click)="showPosts()">Show my Posts</button>
+<div *ngIf='isShowPosts'>
+<h1>Posts</h1>
+<div *ngFor='let post of posts'>
+  <h4>{{post.title}}</h4>
+  <p>{{post.body}}</p>
+</div>
+</div>
+<form #userForm='ngForm' (ngSubmit) = 'onSubmit(userForm.value)'> 
+  <input type="text" name='firstName' placeholder="first name" ngModel>
+  <br>
+  <input type="text" name='lastName' placeholder="Last name" ngModel> 
+  <br>
+  <select name='hobbies' ngModel>
+    <option *ngFor='let hobby of hobbies'>{{hobby}}
+  </select>
+    <input type="submit" value='submit'>
+</form>
+</div>
