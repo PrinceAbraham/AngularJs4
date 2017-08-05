@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .bg-black{
-    background-color: #2D2F36;
+    background-color: #2D2F36 !important;
 }
 .bg-green{
     background-color:#8CD2B2 !important;

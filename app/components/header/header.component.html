@@ -18,13 +18,13 @@
       <li class="nav-item">
         <a class="nav-link font-white" routerLink="/about">About</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
+      </li> -->
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn my-2 my-sm-0 bg-green font-black" type="submit">Search</button>
+      <input class="form-control mr-sm-2 bg-black" type="text" placeholder="Search" [(ngModel)]='searchName' name='searchName'>
+      <button class="btn my-2 my-sm-0 bg-green font-black" type="submit" (click)='search(searchName)'>Search</button>
     </form>
   </div>
 </nav>

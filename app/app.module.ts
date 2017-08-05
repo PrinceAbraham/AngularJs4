@@ -8,13 +8,16 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.component';
 
 import {FakeJsonDataService} from './services/fake-json-data.service';
+import {GithubService} from './services/github.service';
+
 import { AboutComponent } from './components/about/about.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HomeComponent } from './components/home/home.component';
 
 const appRoutes: Routes = [
   {
-    path:'', component:UserComponent
+    path:'', component:HomeComponent
   },
   {
     path:'about', component:AboutComponent
@@ -27,7 +30,8 @@ const appRoutes: Routes = [
     UserComponent,
     AboutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [FakeJsonDataService],
+  providers: [FakeJsonDataService, GithubService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
