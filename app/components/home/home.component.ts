@@ -12,10 +12,10 @@ export class HomeComponent implements OnInit {
   constructor(public githubService: GithubService) { }
 
   ngOnInit() {
-    this.githubService.getRandomSlogan().subscribe((slogan)=>{
-      console.log(slogan);
-    this.welcomeMessage = slogan;
-  });
+  //   this.githubService.getRandomSlogan().subscribe((slogan)=>{
+  //     console.log(slogan);
+  //   this.welcomeMessage = slogan;
+  // });
   }
 
 }

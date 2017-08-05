@@ -21,6 +21,9 @@ const appRoutes: Routes = [
   },
   {
     path:'about', component:AboutComponent
+  },
+  {
+    path:'users/:name', component:UserComponent
   }
 ]
 

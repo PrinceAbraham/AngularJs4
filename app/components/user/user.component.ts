@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FakeJsonDataService} from '../../services/fake-json-data.service';
+import {GithubService} from '../../services/github.service';
+import {CanActivate, Router, ActivatedRoute, RouterStateSnapshot, 
+  CanActivateChild, NavigationExtras} from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -17,11 +20,23 @@ export class UserComponent implements OnInit {
     isShowPosts:boolean;
     posts:Post[];
 
-  constructor(private data:FakeJsonDataService) { 
+    searchName:string;
+    private sub:any;
+
+  constructor(private data:FakeJsonDataService, private githubService: GithubService, private activeRoute: ActivatedRoute) { 
     console.log('contructor ran');
+    console.log('has search results', this.githubService.searchResults);
   }
 
   ngOnInit() {
+    this.sub = this.activeRoute.params.subscribe(params =>{
+      console.log(params);
+      this.searchName = params.name;
+    });
+    this.githubService.searchUser(this.searchName).subscribe(result =>{
+      console.log(result);
+      this.githubService.searchResults = result.items;
+    });
     this.name = 'John Doe';
     this.age = 30;
     this.email = 'jd@gmail.com';
@@ -39,7 +54,9 @@ export class UserComponent implements OnInit {
       console.log(this.posts);
     })
   }
-
+ngOnDestroy(){
+  this.sub.unsubscribe();
+}
   showPosts(){
     this.isShowPosts = true;
   }

@@ -5,6 +5,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class GithubService {
 
+  public searchResults:any;
+
   url:string = 'https://api.github.com/';
 
   constructor(public http: Http) { }
@@ -12,6 +14,11 @@ export class GithubService {
   getRandomSlogan(){
     return this.http.get(this.url+'zen')
     .map(res => res.text());
+  }
+
+  searchUser(name){
+    return this.http.get(this.url+'search/users?q='+ name)
+    .map(res => res.json());
   }
 
   getUser(name){
