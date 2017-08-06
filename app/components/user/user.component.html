@@ -1,4 +1,4 @@
-<div class='container'>
+<!-- <div class='container'>
   <h1>
   Hi! my name is {{name}}
 </h1>
@@ -66,4 +66,14 @@
   </select>
     <input type="submit" value='submit'>
 </form>
+</div> -->
+<div class="user-background">
+  <div class="container">
+      <div class="row">
+        <div class="col-md-12 bg-white search-result-container">Search Results: {{searchResults.length}}</div>
+        <div *ngFor='let user of searchResults' class="user-container col-md-12 mrg20T" (click)='goToThisProfile(user)'>
+              <div class="col-md-1"><img class='' src="{{user.avatar_url}}" /></div><div class="col-md-offset-1 col-md-8">{{user.login}}</div>
+        </div>
+      </div>
+  </div>
 </div>

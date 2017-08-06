@@ -8,3 +8,12 @@
 .font-white{
     color:#Fdfdfe !important;
 }
+.pad20T{
+    padding-top: 20px;
+}
+.pad20B{
+    padding-bottom: 20px;
+}
+.mrg20T{
+    margin-top: 20px;
+}

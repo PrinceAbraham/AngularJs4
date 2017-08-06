@@ -14,6 +14,7 @@ import { AboutComponent } from './components/about/about.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const appRoutes: Routes = [
   {
@@ -24,6 +25,9 @@ const appRoutes: Routes = [
   },
   {
     path:'users/:name', component:UserComponent
+  },
+  {
+    path:'profile/:name', component:UserProfileComponent
   }
 ]
 
@@ -34,7 +38,8 @@ const appRoutes: Routes = [
     AboutComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -22,21 +22,32 @@ export class UserComponent implements OnInit {
 
     searchName:string;
     private sub:any;
+    searchResults: any[];
 
-  constructor(private data:FakeJsonDataService, private githubService: GithubService, private activeRoute: ActivatedRoute) { 
+  constructor(private data:FakeJsonDataService, 
+    private githubService: GithubService, 
+    private activeRoute: ActivatedRoute,
+  private router: Router) { 
     console.log('contructor ran');
-    console.log('has search results', this.githubService.searchResults);
   }
 
   ngOnInit() {
+    this.searchResults = [];
     this.sub = this.activeRoute.params.subscribe(params =>{
       console.log(params);
       this.searchName = params.name;
     });
-    this.githubService.searchUser(this.searchName).subscribe(result =>{
-      console.log(result);
+    console.log(typeof(this.githubService.searchResults));
+    if(typeof(this.githubService.searchResults) != undefined) {
+      this.githubService.searchUser(this.searchName).subscribe(result =>{
       this.githubService.searchResults = result.items;
+      this.searchResults = result.items;
+      console.log(this.searchResults);
     });
+    }else{
+      this.searchResults = this.githubService.searchResults;
+      console.log(this.searchResults, 'searchResult had data');
+    }
     this.name = 'John Doe';
     this.age = 30;
     this.email = 'jd@gmail.com';
@@ -51,7 +62,6 @@ export class UserComponent implements OnInit {
 
     this.data.getPosts().subscribe((posts) =>{
       this.posts = posts;
-      console.log(this.posts);
     })
   }
 ngOnDestroy(){
@@ -71,6 +81,9 @@ for(let i =0; i < this.hobbies.length; i++){
     this.hobbies.splice(i,1);
   }
 }
+}
+goToThisProfile(user){
+this.router.navigate(['/profile', user.login]);
 }
 onSubmit(formValue){
 console.log(formValue);
