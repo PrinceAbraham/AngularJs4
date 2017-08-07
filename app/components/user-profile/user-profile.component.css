@@ -1,0 +1,43 @@
+.user-background{
+    min-height: 100vh;
+}
+.overlay-dark{
+    min-height: 100vh;
+    background-color: rgba(45,47, 54, 0.9);
+}
+.background-picture{
+    background-image: url('../../../assets/images/mountain_valley.jpg');
+    width: 100vw;
+    height: 380px;
+}
+.user-profile-content-container{
+    top:-190px;
+    position: relative;
+}
+.avatar_img{
+    border: 1px solid white;
+    width: 128px;
+    height:128px;
+    border-radius: 8px;
+}
+.avatar_img img{
+    width: 128px;
+    height: 128px;
+    padding: 10px;
+}
+.details-container{
+    color:white;
+    margin-left:20px;
+}
+.octicon{
+    fill:currentColor;
+}
+.counter{
+    display: inline-block;
+    padding: 2px 5px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    border: 1px solid white;
+    border-radius: 20px;
+}

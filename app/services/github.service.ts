@@ -26,4 +26,9 @@ export class GithubService {
     .map(res => res.json());
   }
 
+  getRepositories(name){
+      return this.http.get(this.url+'users/'+name+'/repos')
+    .map(res => res.json());
+  }
+
 }

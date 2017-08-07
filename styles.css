@@ -8,12 +8,34 @@
 .font-white{
     color:#Fdfdfe !important;
 }
+.font-gray{
+    color: #CCD6D9;
+}
+.font-bold{
+    font-weight: 800;
+}
+.pad5T{
+padding-top: 5px;
+}
+.pad5B{
+    padding-bottom: 5px;
+}
 .pad20T{
     padding-top: 20px;
 }
 .pad20B{
     padding-bottom: 20px;
 }
+.mrg5R{
+    margin-right: 5px;
+}
+.mrg10R{
+    margin-right: 10px;
+}
 .mrg20T{
     margin-top: 20px;
+}
+
+.inline-block{
+    display: inline-block;
 }
