@@ -41,3 +41,18 @@
     border: 1px solid white;
     border-radius: 20px;
 }
+.detail-tab-container{
+    top: -170px;
+    position: relative;
+}
+.about-title-container{
+    color: #8cd2b2;
+    border-bottom: 2px solid #8cd2b2;
+    padding-bottom: 15px;
+}
+.top-three-languages-container{
+    width: 80%;
+    height: 200px;
+    background-color: white;
+    border-radius: 10px;
+}

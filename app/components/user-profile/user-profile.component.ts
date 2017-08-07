@@ -16,6 +16,7 @@ export class UserProfileComponent implements OnInit {
   repoDetails:any;
   topThreeLanguages:string[] = [];
   groupsOfLanguages:any = [];
+  mostWatchedRepo:any;
 
   constructor(private activeRoute: ActivatedRoute, 
     private githubService: GithubService) {
@@ -32,6 +33,7 @@ export class UserProfileComponent implements OnInit {
               this.githubService.getRepositories(this.loginName).subscribe(res => {
                 this.repoDetails = res;
                 this.topThreeLanguages = this.getTopThreeLanguages(this.repoDetails);
+                this.mostWatchedRepo = this.getMostWatchedRepo(this.repoDetails);
               });
           }
       });
@@ -44,21 +46,38 @@ export class UserProfileComponent implements OnInit {
 
   getTopThreeLanguages(repo){
     let languages = _.groupBy(repo, 'language');
+    let threeLanguages = [];
+    if(languages['null']){
+        delete languages['null'];
+    }
     for(let language in languages){
       languages[language] = languages[language].length;
-      if(languages.hasOwnProperty(language)){
-        this.groupsOfLanguages.push(language);
-      }
     }
     let topNumbers = _.sortBy(languages, [function(o){return -o;}]);
-    this.topThreeLanguages.push(_.findKey(languages, topNumbers[0]));
-    this.topThreeLanguages.push(_.findKey(languages, topNumbers[1]));
-    this.topThreeLanguages.push(_.findKey(languages, topNumbers[2]));
-    console.log(this.topThreeLanguages);
-      return null;
+    for(let key in languages){
+      var value = languages[key];
+      if(topNumbers[0] == value){
+        threeLanguages[0] = key;
+      }
+      if(topNumbers[1] == value){
+        threeLanguages[1] = key;
+      }
+      if(topNumbers[2] == value){
+        threeLanguages[2] = key;
+      }
+    }
+      return threeLanguages;
   }
-}
-interface popularLanguage{
-    name:string;
-    count:number;
+  
+  getMostWatchedRepo(repo){
+    let mostWatch = 0;
+    let repoToSend;
+    for(let i = 0; i < repo.length; i++){
+        if(repo[i].watchers > mostWatch){
+          mostWatch = repo[i].watchers;
+          repoToSend = repo[i];
+        }
+    }
+      return repoToSend;
+  }
 }
