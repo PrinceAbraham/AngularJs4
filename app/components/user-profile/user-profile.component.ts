@@ -15,7 +15,7 @@ export class UserProfileComponent implements OnInit {
   userDetails:any;
   repoDetails:any;
   topThreeLanguages:string[] = [];
-  groupsOfLanguages:any = [];
+  groupsOfLanguages:string[] = [];
   mostWatchedRepo:any;
 
   constructor(private activeRoute: ActivatedRoute, 
@@ -24,6 +24,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userDetails = {};
     this.sub = this.activeRoute.params.subscribe(params =>{
       this.loginName = params.name;
       this.githubService.getUser(this.loginName).subscribe(res =>{
@@ -47,22 +48,27 @@ export class UserProfileComponent implements OnInit {
   getTopThreeLanguages(repo){
     let languages = _.groupBy(repo, 'language');
     let threeLanguages = [];
+    let allLanguages = [];
     if(languages['null']){
         delete languages['null'];
     }
+    
     for(let language in languages){
       languages[language] = languages[language].length;
+      allLanguages.push(language);
     }
+    this.groupsOfLanguages = allLanguages;
+    console.log(this.groupsOfLanguages);
     let topNumbers = _.sortBy(languages, [function(o){return -o;}]);
     for(let key in languages){
       var value = languages[key];
-      if(topNumbers[0] == value){
+      if(topNumbers[0] == value && value > 3){
         threeLanguages[0] = key;
       }
-      if(topNumbers[1] == value){
+      if(topNumbers[1] == value && value > 3){
         threeLanguages[1] = key;
       }
-      if(topNumbers[2] == value){
+      if(topNumbers[2] == value && value > 3){
         threeLanguages[2] = key;
       }
     }
